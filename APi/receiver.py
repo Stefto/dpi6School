@@ -11,10 +11,10 @@ channel = connection.channel()
 channel.queue_declare(queue=que)
 
 
-def callBack(self,ch,method,properties,body):
+def callBack(ch, method, properties, body):
     print(" [x] Received %r" % body)
 
-channel.basic_consume(callback,queue=que, no_ack=True)
+channel.basic_consume(callBack,queue=que, no_ack=True)
 
 print("Currently in listening mode, to exit pres CTRL+C")
 channel.start_consuming()

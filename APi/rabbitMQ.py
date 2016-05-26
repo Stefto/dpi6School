@@ -13,7 +13,11 @@ class rabbitmq:
         channel = connection.channel()
 
         channel.queue_declare(queue=que)
-        channel.basic_publish(exchange='',routing_key=que,body=msg)
+        channel.basic_publish(exchange='',
+                              routing_key=que,
+                              body=msg,
+                              properties=pika.BasicProperties(delivery_mode= 2))#makes messages persist
+
 
         print('sent hello world.')
 
