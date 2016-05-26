@@ -1,5 +1,7 @@
-import rabbitMQ
+from rabbitMQ import rabbitmq
 
-rabbitMQ.send('hello', 'hello world')
+rabb = rabbitmq()
 
-rabbitMQ.receive('hello')
+rabb.send('hello', 'hello world')
+
+rabb.receive('hello')
