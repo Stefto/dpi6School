@@ -17,12 +17,14 @@ def callback(ch, method, properties, body):
 
     if (received['command'] == '1'):
         result = fac.getAllHDDs()
+        result = result.__dict__
         print(result)
-        sending().send('localhost','result','result'.json.dumps(result) )
+        sending().send('localhost','result','result',json.dumps(result) )
     if (received['command'] == '2'):
         result= fac.getHDDByItemID(received['itemid'])
+        result = result.__dict__
         print(result)
-        sending().send('localhost','result','result'.json.dumps(result) )
+        sending().send('localhost','result','result',json.dumps(result) )
     else:
         print('No valid json Received')
 
