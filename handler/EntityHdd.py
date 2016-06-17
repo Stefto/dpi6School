@@ -7,11 +7,11 @@ class HDD(Base):
 
     id = Column(Integer, primary_key = True)
     ItemID = Column(INTEGER,nullable=False)
-    price = Column(NUMERIC, nullable=False)
+    price = Column(String(10), nullable=False)
     brand = Column(String(50), nullable=False)
     name = Column(String(150), nullable=False)
-    size = Column(String(20),nullable=False)
-    Shop = Column(String(50), nullable=False)
+    size = Column(String(20), nullable=False)
+    Shop = Column(String(50), nullable=True)
     url = Column(String(255), nullable=True)
 
     def __init__(self, itemID, price, brand, name, size, shop,url):

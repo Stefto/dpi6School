@@ -1,4 +1,5 @@
 from facade import facade
+from EntityHdd import HDD
 import json
 import requests
 from lxml import html
@@ -12,27 +13,26 @@ trs = tree.xpath('//td[@class="l"]/a')
 
 previousLink = ''
 currentLink = ''
+shop ='www.4launch.nl'
 
 for href in trs:
     currentLink=href.attrib['href']
-    if (currentLink==previousLink):
-        break
-    else:
+    if (currentLink!=previousLink):
         previousLink=currentLink
         tmp = requests.get('https://www.4launch.nl'+ currentLink)
 
         table = html.fromstring(tmp.content).xpath('//tr')
         name= table[7].xpath('//td')[7].text
 
-        if (fac.getHDDByName(name)== 1 ):
+        if (fac.getHDDByName(name).count(name)>= 1 ):
             break
         brand = currentLink.split('-')[1]
         price = table[7].xpath('//td')[15].text.encode('utf-8')[4:]
         size = table[7].xpath('//td')[25].text
-        print(price)
-        print(name)
-        print(brand)
-        print(size)
-        newItem = HDD(fac.getnextItemid +1,price,brand,name,size,'www.4launch.nl','https://www.4launch.nl'+ currentLink)
+        nextItem =fac.getnextItemid()
+        if (nextItem == None):
+            nextItem =1
+        else:
+            nextItem = nextItem.ItemID +1
+        newItem = HDD(nextItem,price,brand,name,size, shop, 'https://www.4launch.nl' + currentLink)
         fac.saveHDD(newItem)
-        break;
