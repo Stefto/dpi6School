@@ -1,8 +1,7 @@
 import pika
-from flask import json
 from send import sending
 from facade import facade
-#import json
+import json
 
 connection = pika.BlockingConnection(pika.ConnectionParameters(
         host='localhost'))
@@ -18,14 +17,12 @@ def callback(ch, method, properties, body):
 
     if (received['command'] == '1'):
         result = fac.getAllHDDs()
-        d = json.genericJson(result)
         print(result)
-        sending().send('localhost','result','result',json.dumps(d))
+        sending().send('localhost','result','result',json.dumps(result))
     if (received['command'] == '2'):
         result= fac.getHDDByItemID(received['itemid'])
-        d = json.genericJson(result)
         print(result)
-        sending().send('localhost','result','result',json.dumps(d))
+        sending().send('localhost','result','result',json.dumps(result))
     else:
         print('No valid json Received')
 
