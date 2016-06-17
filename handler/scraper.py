@@ -27,7 +27,7 @@ for href in trs:
         if (fac.getHDDByName(name).count(name)>= 1 ):
             break
         brand = currentLink.split('-')[1]
-        price = table[7].xpath('//td')[15].text.encode('utf-8')[4:]
+        price = table[7].xpath('//td')[15].text.replace('\u20ac', ',')[2:]#.encode('utf-8')[4:]
         size = table[7].xpath('//td')[25].text
         nextItem =fac.getnextItemid()
         if (nextItem == None):
