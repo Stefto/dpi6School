@@ -18,11 +18,11 @@ def callback(ch, method, properties, body):
     if (received['command'] == '1'):
         result = fac.getAllHDDs()
         print(result)
-        sending().send('localhost','result','Sesame'.json.dumps(result) )
+        sending().send('localhost','result','result'.json.dumps(result) )
     if (received['command'] == '2'):
         result= fac.getHDDByItemID(received['itemid'])
         print(result)
-        sending().send('localhost','result','Sesame'.json.dumps(result) )
+        sending().send('localhost','result','result'.json.dumps(result) )
     else:
         print('No valid json Received')
 
@@ -30,7 +30,7 @@ def callback(ch, method, properties, body):
     print(" [x] Received %r" % body)
 
 channel.basic_consume(callback,
-                      queue='sesame',
+                      queue='Sesame',
                       no_ack=True)
 
 print(' [*] sever active, pres CTRL+C to exit')
