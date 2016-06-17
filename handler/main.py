@@ -18,13 +18,13 @@ def callback(ch, method, properties, body):
     if (received['command'] == '1'):
         result = fac.getAllHDDs()
         passive_dict = {}
-        for i, e in enumerate(fac.getAllHDDs()):
+        for i, e in enumerate(result):
             passive_dict[i] = e.as_dict()
         sending().send('localhost','result','result',json.dumps(passive_dict))
     if (received['command'] == '2'):
         result= fac.getHDDByItemID(received['itemid'])
         passive_dict = {}
-        for i, e in enumerate(fac.getAllHDDs()):
+        for i, e in enumerate(result):
             passive_dict[i] = e.as_dict()
         sending().send('localhost','result','result',json.dumps(passive_dict))
     else:
