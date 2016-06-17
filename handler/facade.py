@@ -33,6 +33,9 @@ class facade:
     def getHDDByItemID(self,ItemID):
         return self.Session.query(HDD).filter_by(ItemID=ItemID).all()
 
+    def priceCompared(self,ItemID):
+        return self.Session.query(HDD).filter_by(ItemID=ItemID).order_by(HDD.price.desc()).all()
+
     def getHDDByName(self,name):
         return self.Session.query(HDD).filter_by(name=name).all()
 
