@@ -7,7 +7,7 @@ class HDD(Base):
 
     id = Column(Integer, primary_key = True)
     ItemID = Column(INTEGER,nullable=False)
-    price = Column(String(10), nullable=False)
+    price = Column(REAL(), nullable=False)
     brand = Column(String(50), nullable=False)
     name = Column(String(150), nullable=False)
     size = Column(String(20), nullable=False)
